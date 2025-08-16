@@ -1,13 +1,14 @@
-import './App.css'
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import ChatRoom from "./pages/ChatRoom";
 
 function App() {
   return (
-    <div className="flex justify-center items-center h-screen bg-slate-900 text-white">
-      <h1 className="text-4xl font-bold underline">
-        Hello Tailwind!
-      </h1>
-    </div>
-  )
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/room/:id" element={<ChatRoom />} />
+      </Routes>
+  );
 }
 
-export default App
+export default App;
