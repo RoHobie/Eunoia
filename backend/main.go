@@ -8,6 +8,7 @@ import (
 	"eunoia/internal/store"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/websocket/v2"
 	"github.com/joho/godotenv"
 )
@@ -24,6 +25,10 @@ func main() {
 	// Fiber app
 	app := fiber.New()
 
+	app.Use(cors.New(cors.Config{
+		AllowOrigins: "http://localhost:5173/",
+		AllowMethods: "GET,POST,OPTIONS",
+	}))
 	// Middleware for WebSocket upgrade
 	app.Use("/ws", func(c *fiber.Ctx) error {
 		if websocket.IsWebSocketUpgrade(c) {
